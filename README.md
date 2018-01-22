@@ -29,7 +29,10 @@ The following libraries are required:
 ### Preprocessing data
 
     cd ./data/
-    python parse.py metadata.json
+    # update: preprocess with grep. It's a lot faster.
+    #  python parse.py metadata.json
+    cat metadata.json | grep "'brand'" | grep "'categories'" | grep "'title'" > brand.cat.title.json
+    python parse2.py brand.cat.title.json
     python normalize.py products.csv
     python trim.py products.normalized.csv
     python supplement.py products.normalized.trimmed.csv
